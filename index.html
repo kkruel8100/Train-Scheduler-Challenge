@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Train Scheduler</title>
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<!-- Timepicker -->
+	<link href="https://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.css" rel="stylesheet"/>
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+<body>
+	
+	<div class="jumbotron jumbotron-fluid">
+	  <div class="container">
+	    <h1 class="display-3">Train Scheduler</h1>
+	    <p class="lead">Destination and Arrival Board</p>
+	  </div>
+	</div><!--end of jumbotron -->
+
+	<div class="container">
+	  <div class="row">
+	    <div class="col-sm-12">
+	    	<div class="card">
+  				<h4 class="card-header">Current Train Schedule</h4>
+  				<div class="card-body">
+					<table class="table">
+					  <thead>
+					    <tr>
+					      <th>Train Name</th>
+					      <th>Destination</th>
+					      <th>Frequency (min)</th>
+					      <th>Next Arrival</th>
+					      <th>Minutes Away</th>
+					    </tr>
+					  </thead>
+					  <tbody id="trainList">  
+					  </tbody>
+					</table>
+
+				</div><!--end of card body -->
+			</div><!--end of card -->
+	    </div>
+	  </div><!--end of row -->
+	  <div class="row">
+	    <div class="col-sm-12">
+			<div class="card">
+  				<h4 class="card-header">Add Train</h4>
+  				<div class="card-body">
+					<form>
+						  <div class="form-group">
+						    <label>Train Name</label>
+						    <input type="text" class="form-control" id="train_input"></input>
+						  </div>
+						  <div class="form-group">
+						    <label>Destination</label>
+						    <input type="text" class="form-control" id="destination_input"></input>
+						  </div>
+						  <div class="form-group">
+						    <label>First Train Time (HH:mm - military time)</label><br>
+							<input type="text" id="time"></input>
+						  </div>	
+						  <div class="form-group">
+						    <label>Frequency (min)</label>
+						    <input type="text" class="form-control" id="frequency_input"></input>
+						  </div>
+						  <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+					</form><!--end of form -->
+				</div><!--end of card body -->
+	      	</div><!--end of card -->
+	    </div>
+	  </div><!--end of row -->
+	</div><!--end of container -->
+
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.js"></script>
+	<!-- Firebase Javascript -->
+    <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+    <!-- Moment.js -->
+  	<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>	
+    <!-- Custom Javascript -->
+	<script src="app.js"></script>
+</body>
+</html>

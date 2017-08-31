@@ -1,0 +1,51 @@
+h1, h2, h3, h4, h5, p {
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+.display-3, .lead {
+	text-align: center;
+	color: #fff;
+}
+
+.display-3 {
+	font-size: 4rem;
+	letter-spacing: .5rem;
+}
+
+.lead {
+	font-size: 2rem;
+}
+
+.jumbotron {
+	background-color: #414141;
+	padding: 32px 0;
+}
+
+.card {
+	margin-bottom: 30px;
+
+}
+
+.card-header {
+	background-color: #337ab7;
+	color: #fff;
+	font-size: 1.3rem;
+}
+
+._jw-tpk-container {
+	height: 155px;
+}
+
+ol {
+	margin-bottom: .4rem;
+}
+
+#time {
+	height: 36px;
+	padding: 8px;
+	border:	1px solid rgba(0,0,0,.15);
+}
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+	background-color: #fff;
+}
