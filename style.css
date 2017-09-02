@@ -49,3 +49,18 @@ ol {
 input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 	background-color: #fff;
 }
+
+.btn-sm {
+	padding: 0;
+	line-height: 0
+}
+
+.remove {
+	width: 24px;
+	height: 24px;
+	padding: 0;
+}
+
+.table td.editfun {
+	padding: .75rem .25rem;
+}

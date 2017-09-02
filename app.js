@@ -1,5 +1,9 @@
 $(document).ready(function() {
 
+  setInterval(function() {
+    location.reload(true);
+  }, 60000);
+
   //Timepicker for 24 hour format
   var timepicker = new TimePicker('time', {
   lang: 'en',
@@ -9,7 +13,6 @@ $(document).ready(function() {
   var value = (evt.hour || '00') + ':' + (evt.minute || '00');
   evt.element.value = value;
   });
-
 
   // Initialize Firebase
   var config = {
@@ -25,15 +28,15 @@ $(document).ready(function() {
   var database = firebase.database();
 
   // Initial Values
-    var trainName = "";
-    var destination = "";
-    var time = "";
-    var frequency = "";
-    var nextArrival = "";
-    var minAway = "";
-
-    // Capture Button Click
-    $("#submit").on("click", function(event) {
+  var trainName = "";
+  var destination = "";
+  var time = "";
+  var frequency = "";
+  var nextArrival = "";
+  var minAway = "";
+  
+  // Capture Button Click for Add a Train
+  $("#submit").on("click", function(event) {
       event.preventDefault();
       
       trainName = $("#train_input").val().trim();
@@ -56,37 +59,39 @@ $(document).ready(function() {
       $("#time").val("");
       $("#frequency_input").val("");
 
-    });
+  });
 
-    // Update Train Schedule
-    database.ref().on("child_added", function(childSnapshot) {
+  // Update Train Schedule
+  database.ref().on("child_added", function(childSnapshot) {
 
-    //Train first time
-    var time = childSnapshot.val().time.trim();
-    var timeConverted = moment(time, "H:mm");
+      
+      //Train first time
+      var time = childSnapshot.val().time.trim();
+      var timeConverted = moment(time, "H:mm");
     
-    //Difference between first train and now
-    var diffTime = moment().diff(moment(timeConverted), "minutes");
+      //Difference between first train and now
+      var diffTime = moment().diff(moment(timeConverted), "minutes");
     
-    //Train frequency
-    var frequency = childSnapshot.val().frequency.trim();
-    //Remainder of the difference between now and first train divided by frequency
-	var timeRemainder = diffTime % frequency;
-    //Minutes until next train
-    var minNextTrain = frequency - timeRemainder;
-    //Next train time
-   	var nextTrain = moment().add(minNextTrain, "minutes");
+      //Train frequency
+      var frequency = childSnapshot.val().frequency.trim();
+      //Remainder of the difference between now and first train divided by frequency
+	    var timeRemainder = diffTime % frequency;
+      //Minutes until next train
+      var minNextTrain = frequency - timeRemainder;
+      //Next train time
+     	var nextTrain = moment().add(minNextTrain, "minutes");
 
-    // full list of trains
-       $("#trainList").append("<tr><td> " + childSnapshot.val().trainName +
-         " </td><td> " + childSnapshot.val().destination +
-         " </td><td> " + childSnapshot.val().frequency +
-         " </td><td> " + nextTrain.format("h:mm A") +
-         " </td><td> " + minNextTrain + " </td></tr>");
+      // full list of trains
+         $("#trainList").append("<tr><td> " + childSnapshot.val().trainName +
+           " </td><td> " + childSnapshot.val().destination +
+           " </td><td> " + childSnapshot.val().frequency +
+           " </td><td> " + nextTrain.format("h:mm A") +
+           " </td><td> " + minNextTrain + 
+           " </td></tr>");
 
-     // Handle the errors
-     }, function(errorObject) {
-       console.log("Errors handled: " + errorObject.code);
-    });
+       // Handle the errors
+       }, function(errorObject) {
+         console.log("Errors handled: " + errorObject.code);
+  });
 
 });//document ready
